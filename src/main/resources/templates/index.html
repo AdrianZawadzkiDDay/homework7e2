@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+
+<body>
+<h1 style="color:green; background: beige">News</h1>
+
+<form class="pure-form" th:each="article: ${articles} " th:object="${modNews}" th:action="@{/news/modification}" method="get" >
+
+    <fieldset class="pure-group" >
+       ID:    <textarea class="pure-input-1-4" name="articleId" th:text="${article.getArticleId()}" ></textarea>
+       Author:  <textarea class="pure-input-1-2" name="author" th:text="${article.getAuthor()}" ></textarea>
+       Title:  <textarea class="pure-input-1" name="title" th:text="${article.getTitle()}" ></textarea>
+       Content:  <textarea class="pure-input-1" name="content" th:text="${article.getContent()}" ></textarea>
+        <button type="submit" class="pure-button pure-input-1-5 pure-button-primary">Update Article</button>
+        <td><a class="pure-button pure-button-primary"
+               th:href="@{/news/delete/{id}(id=${article.getArticleId()})}">Remove</a></td>
+
+        <br>
+        <p>------------------</p>
+        <br>
+    </fieldset>
+
+</form>
+
+
+</body>
+</html>
